@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechNova Solutions | Digital Transformation Experts</title>
+  <meta name="description" content="TechNova Solutions provides cutting-edge web development, mobile apps, and digital marketing services to help businesses thrive in the digital age.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --accent: #e74c3c;
+      --success: #27ae60;
+      --warning: #f39c12;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo span {
+      color: var(--secondary);
+    }
+    
+    .logo-icon {
+      font-size: 1.5rem;
+    }
+    
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    nav a:hover, nav a.active {
+      background-color: var(--secondary);
+    }
+    
+    nav a i {
+      font-size: 0.9rem;
+    }
+    
+    #app {
+      min-height: 70vh;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 3rem 2rem;
+      margin-top: 3rem;
+    }
+    
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-column h3 {
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-column ul li a {
+      color: var(--light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-column ul li a:hover {
+      color: var(--secondary);
+    }
+    
+    .footer-column .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+    
+    .contact-info-item i {
+      color: var(--secondary);
+      margin-top: 0.2rem;
+    }
+    
+    .social-links-footer {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links-footer a {
+      color: white;
+      background-color: rgba(255,255,255,0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links-footer a:hover {
+      background-color: var(--secondary);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Service Grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background-color: var(--secondary);
+      transition: height 0.3s ease;
+    }
+    
+    .service-card:hover::before {
+      height: 100%;
+    }
+    
+    /* Blog Posts */
+    .blog-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .blog-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .blog-image {
+      height: 200px;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .blog-category {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: var(--secondary);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    .blog-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-content h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+    }
+    
+    .blog-meta {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .blog-meta i {
+      margin-right: 0.3rem;
+    }
+    
+    .read-more {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .read-more i {
+      transition: transform 0.3s ease;
+    }
+    
+    .read-more:hover i {
+      transform: translateX(3px);
+    }
+    
+    /* Contact Form */
+    .contact-form {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .btn {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--secondary);
+      color: var(--secondary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 5rem 2rem;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    /* Team Members */
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .team-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .team-image {
+      height: 280px;
+      background-color: #f1f1f1;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .team-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      text-align: left;
+    }
+    
+    .team-overlay h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .team-overlay p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    .team-info {
+      padding: 1.5rem;
+    }
+    
+    .team-bio {
+      color: #666;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      color: var(--primary);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--secondary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background-color: white;
+      padding: 3rem 2rem;
+      border-radius: 8px;
+      margin: 3rem 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .testimonial-card {
+      background-color: #f9f9f9;
+      padding: 2rem;
+      border-radius: 8px;
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 4rem;
+      color: rgba(0,0,0,0.05);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .testimonial-content {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      color: #555;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #ddd;
+      background-size: cover;
+    }
+    
+    .author-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    .author-info p {
+      font-size: 0.9rem;
+      color: #777;
+    }
+    
+    /* Clients Section */
+    .clients {
+      margin: 3rem 0;
+    }
+    
+    .client-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .client-logo {
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      max-width: 150px;
+      max-height: 80px;
+    }
+    
+    .client-logo:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+    
+    /* Stats Section */
+    .stats {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 8px;
+      margin: 3rem 0;
+      text-align: center;
+    }
+    
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .stat-item {
+      padding: 1.5rem;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    
+    /* CTA Section */
+    .cta {
+      background-color: var(--secondary);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 8px;
+      margin: 3rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+    
+    .cta::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 150px;
+      height: 150px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    /* Process Section */
+    .process {
+      margin: 3rem 0;
+    }
+    
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+    
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 30px;
+      height: 100%;
+      width: 2px;
+      background-color: var(--secondary);
+      opacity: 0.2;
+    }
+    
+    .process-step {
+      display: flex;
+      gap: 1.5rem;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background-color: var(--secondary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    
+    .step-content {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      flex-grow: 1;
+    }
+    
+    .step-content h3 {
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      nav {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      
+      nav a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <i class="fas fa-rocket logo-icon"></i>
+      <span>Tech</span>Nova
+    </div>
+    <nav>
+      <a onclick="navigate('home')" class="active"><i class="fas fa-home"></i> Home</a>
+      <a onclick="navigate('about')"><i class="fas fa-info-circle"></i> About</a>
+      <a onclick="navigate('services')"><i class="fas fa-cogs"></i> Services</a>
+      <a onclick="navigate('portfolio')"><i class="fas fa-briefcase"></i> Portfolio</a>
+      <a onclick="navigate('blog')"><i class="fas fa-blog"></i> Blog</a>
+      <a onclick="navigate('contact')"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+  </header>
+
+  <div id="app"></div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About TechNova</h3>
+        <p>We are a leading digital solutions provider helping businesses transform through innovative technology and creative strategies.</p>
+        <div class="social-links-footer">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#" onclick="navigate('home')">Home</a></li>
+          <li><a href="#" onclick="navigate('about')">About Us</a></li>
+          <li><a href="#" onclick="navigate('services')">Our Services</a></li>
+          <li><a href="#" onclick="navigate('portfolio')">Portfolio</a></li>
+          <li><a href="#" onclick="navigate('blog')">Blog</a></li>
+          <li><a href="#" onclick="navigate('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">Mobile App Development</a></li>
+          <li><a href="#">UI/UX Design</a></li>
+          <li><a href="#">Digital Marketing</a></li>
+          <li><a href="#">Cloud Solutions</a></li>
+          <li><a href="#">IT Consulting</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>123 Tech Street, San Francisco, CA 94107</span>
+          </div>
+          <div class="contact-info-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>(415) 555-1234</span>
+          </div>
+          <div class="contact-info-item">
+            <i class="fas fa-envelope"></i>
+            <span>info@technova.com</span>
+          </div>
+          <div class="contact-info-item">
+            <i class="fas fa-clock"></i>
+            <span>Mon-Fri: 9AM - 6PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 TechNova Solutions. All rights reserved. | <a href="#" style="color: var(--secondary);">Privacy Policy</a> | <a href="#" style="color: var(--secondary);">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Current active nav item
+    let currentActive = document.querySelector('nav a.active');
+    
+    function navigate(page) {
+      const app = document.getElementById('app');
+      
+      // Update active nav item
+      if (currentActive) {
+        currentActive.classList.remove('active');
+      }
+      const newActive = document.querySelector(`nav a[onclick="navigate('${page}')"]`);
+      newActive.classList.add('active');
+      currentActive = newActive;
+      
+      // Page content
+      if (page === 'home') {
+        app.innerHTML = `
+          <div class="hero">
+            <div class="hero-content">
+              <h1 class="fade-in">Transforming Businesses Through Technology</h1>
+              <p class="fade-in delay-1">We deliver innovative digital solutions that drive growth, efficiency, and competitive advantage for your business.</p>
+              <div class="hero-buttons">
+                <button class="btn fade-in delay-2"><i class="fas fa-rocket"></i> Get Started</button>
+                <button class="btn btn-outline fade-in delay-2"><i class="fas fa-play-circle"></i> Watch Demo</button>
+              </div>
+            </div>
+          </div>
+          
+          <section class="fade-in delay-1">
+            <h2>Our Services</h2>
+            <p>We offer comprehensive digital solutions tailored to your business needs.</p>
+            <div class="service-grid">
+              <div class="service-card fade-in delay-1">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <h3>Web Development</h3>
+                <p>Custom websites and web applications built with the latest technologies to ensure performance, security, and scalability.</p>
+              </div>
+              <div class="service-card fade-in delay-2">
+                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile Development</h3>
+                <p>Native and cross-platform mobile apps that deliver exceptional user experiences across all devices.</p>
+              </div>
+              <div class="service-card fade-in delay-3">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>UI/UX Design</h3>
+                <p>Beautiful, intuitive interfaces that enhance user engagement and drive conversions.</p>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+              <button class="btn" onclick="navigate('services')"><i class="fas fa-arrow-right"></i> View All Services</button>
+            </div>
+          </section>
+          
+          <section class="process fade-in delay-2">
+            <h2>Our Process</h2>
+            <p>We follow a proven methodology to deliver exceptional results for our clients.</p>
+            <div class="process-steps">
+              <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h3>Discovery</h3>
+                  <p>We start by understanding your business goals, target audience, and requirements to create a solid foundation for your project.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h3>Planning</h3>
+                  <p>We develop a detailed project plan with milestones, deliverables, and timelines to ensure a smooth development process.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h3>Design</h3>
+                  <p>Our designers create wireframes, mockups, and prototypes to visualize the final product and gather feedback.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h3>Development</h3>
+                  <p>Our developers bring the designs to life using best practices and the latest technologies.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <h3>Testing & Launch</h3>
+                  <p>We rigorously test the solution across devices and platforms before deployment to ensure quality and performance.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="testimonials fade-in delay-3">
+            <h2>What Our Clients Say</h2>
+            <p>Don't just take our word for it - here's what our clients have to say about working with us.</p>
+            <div class="testimonial-grid">
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  TechNova transformed our online presence with a stunning new website that has significantly increased our lead generation and customer engagement.
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/45.jpg');"></div>
+                  <div class="author-info">
+                    <h4>Jennifer Parker</h4>
+                    <p>CEO, BrightStar Marketing</p>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  The mobile app developed by TechNova has been instrumental in growing our customer base and improving service delivery. Their team is professional and highly skilled.
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                  <div class="author-info">
+                    <h4>Michael Rodriguez</h4>
+                    <p>Founder, UrbanEats</p>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  Working with TechNova on our digital transformation has been a game-changer. Their strategic approach and technical expertise delivered exceptional results.
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg');"></div>
+                  <div class="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>CTO, FinTech Solutions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="clients fade-in delay-4">
+            <h2>Trusted By Industry Leaders</h2>
+            <p>We're proud to partner with innovative companies across various industries.</p>
+            <div class="client-logos">
+              <img src="https://via.placeholder.com/150x60?text=Company+A" alt="Company A" class="client-logo">
+              <img src="https://via.placeholder.com/150x60?text=Company+B" alt="Company B" class="client-logo">
+              <img src="https://via.placeholder.com/150x60?text=Company+C" alt="Company C" class="client-logo">
+              <img src="https://via.placeholder.com/150x60?text=Company+D" alt="Company D" class="client-logo">
+              <img src="https://via.placeholder.com/150x60?text=Company+E" alt="Company E" class="client-logo">
+            </div>
+          </section>
+          
+          <section class="stats fade-in delay-4">
+            <h2>By The Numbers</h2>
+            <p>Our track record speaks for itself</p>
+            <div class="stat-grid">
+              <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Projects Completed</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Client Satisfaction</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">40+</div>
+                <div class="stat-label">Team Members</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Years Experience</div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="cta fade-in delay-4">
+            <div class="cta-content">
+              <h2>Ready to Transform Your Business?</h2>
+              <p>Let's discuss how we can help you achieve your digital goals. Get in touch with our team today.</p>
+              <button class="btn" onclick="navigate('contact')"><i class="fas fa-paper-plane"></i> Contact Us</button>
+            </div>
+          </section>
+        `;
+      } 
+      else if (page === 'about') {
+        app.innerHTML = `
+          <div class="hero">
+            <div class="hero-content">
+              <h1>About TechNova</h1>
+              <p>Innovative digital solutions crafted by a team of passionate experts dedicated to your success.</p>
+            </div>
+          </div>
+          
+          <section>
+            <h2>Our Story</h2>
+            <p>Founded in 2013, TechNova Solutions began as a small team of developers with a shared vision: to create technology solutions that make a real difference for businesses. Today, we've grown into a full-service digital agency with offices in San Francisco, New York, and London, serving clients across the globe.</p>
+            
+            <p>What sets us apart is our commitment to understanding our clients' unique challenges and delivering tailored solutions that drive measurable results. We don't just build technology - we build partnerships.</p>
+          </section>
+          
+          <section style="margin-top: 3rem;">
+            <h2>Our Mission & Values</h2>
+            <div class="service-grid">
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Our Mission</h3>
+                <p>To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage in an increasingly digital world.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Innovation</h3>
+                <p>We constantly explore new technologies and approaches to deliver cutting-edge solutions that give our clients an edge.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Integrity</h3>
+                <p>We build trust through transparency, honesty, and delivering on our promises - every time.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-users"></i></div>
+                <h3>Collaboration</h3>
+                <p>We work as partners with our clients, involving them in every step of the process to ensure success.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Excellence</h3>
+                <p>We're committed to delivering exceptional quality in everything we do, from code to customer service.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-heart"></i></div>
+                <h3>Passion</h3>
+                <p>We love what we do, and it shows in the energy and creativity we bring to every project.</p>
+              </div>
+            </div>
+          </section>
+          
+          <section style="margin-top: 3rem;">
+            <h2>Our Team</h2>
+            <p>Meet the talented individuals who make TechNova exceptional.</p>
+            <div class="team-members">
+              <div class="team-card">
+                <div class="team-image" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');">
+                  <div class="team-overlay">
+                    <h4>Sarah Johnson</h4>
+                    <p>CEO & Founder</p>
+                  </div>
+                </div>
+                <div class="team-info">
+                  <div class="team-bio">
+                    Sarah founded TechNova in 2013 with a vision to bridge the gap between business needs and technology solutions.
+                  </div>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="team-card">
+                <div class="team-image" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');">
+                  <div class="team-overlay">
+                    <h4>Michael Chen</h4>
+                    <p>CTO</p>
+                  </div>
+                </div>
+                <div class="team-info">
+                  <div class="team-bio">
+                    Michael leads our technical team with expertise in software architecture and emerging technologies.
+                  </div>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="team-card">
+                <div class="team-image" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg');">
+                  <div class="team-overlay">
+                    <h4>Emma Rodriguez</h4>
+                    <p>Creative Director</p>
+                  </div>
+                </div>
+                <div class="team-info">
+                  <div class="team-bio">
+                    Emma oversees all design initiatives, ensuring beautiful, user-centered experiences across all projects.
+                  </div>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="team-card">
+                <div class="team-image" style="background-image: url('https://randomuser.me/api/portraits/men/45.jpg');">
+                  <div class="team-overlay">
+                    <h4>David Wilson</h4>
+                    <p>Head of Development</p>
+                  </div>
+                </div>
+                <div class="team-info">
+                  <div class="team-bio">
+                    David manages our development team, ensuring projects are delivered on time and to the highest standards.
+                  </div>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-stack-overflow"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="testimonials" style="margin-top: 3rem;">
+            <h2>Our Achievements</h2>
+            <div class="stat-grid">
+              <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Industry Awards</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Satisfied Clients</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Retention Rate</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Global Offices</div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="cta" style="margin-top: 3rem;">
+            <div class="cta-content">
+              <h2>Join Our Team</h2>
+              <p>We're always looking for talented individuals to join our growing team. Check out our current openings.</p>
+              <button class="btn"><i class="fas fa-briefcase"></i> View Careers</button>
+            </div>
+          </section>
+        `;
+      } 
+      else if (page === 'services') {
+        app.innerHTML = `
+          <div class="hero">
+            <div class="hero-content">
+              <h1>Our Services</h1>
+              <p>Comprehensive digital solutions tailored to your business needs and goals.</p>
+            </div>
+          </div>
+          
+          <section>
+            <h2>What We Offer</h2>
+            <p>We provide end-to-end digital services to help your business thrive in today's competitive landscape.</p>
+            
+            <div class="service-grid">
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <h3>Web Development</h3>
+                <p>From simple websites to complex web applications, we build solutions that work.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                  <li>Custom CMS Development</li>
+                  <li>E-commerce Solutions</li>
+                  <li>Web Portals</li>
+                  <li>API Integration</li>
+                  <li>Progressive Web Apps</li>
+                </ul>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile Development</h3>
+                <p>Native and cross-platform mobile apps that deliver exceptional user experiences.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                  <li>iOS App Development</li>
+                  <li>Android App Development</li>
+                  <li>React Native Apps</li>
+                  <li>App Maintenance</li>
+                  <li>Mobile Strategy</li>
+                </ul>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>UI/UX Design</h3>
+                <p>Professional video services to tell your brand's story effectively.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                  <li>User Research & Testing</li>
+                  <li>Wireframing & Prototyping</li>
+                  <li>Interaction Design</li>
+                  <li>Design Systems</li>
+                  <li>Accessibility Audits</li>
+                </ul>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3>Digital Marketing</h3>
+                <p>Strategies that increase your online visibility and drive conversions.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                  <li>SEO Services</li>
+                  <li>Social Media Marketing</li>
+                  <li>PPC Advertising</li>
+                  <li>Content Marketing</li>
+                  <li>Conversion Optimization</li>
+                </ul>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                <h3>Cloud Solutions</h3>
+                <p>Scalable cloud infrastructure to support your business growth.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                  <li>AWS Architecture</li>
+                  <li>Azure Solutions</li>
+                  <li>Cloud Migration</li>
+                  <li>DevOps Services</li>
+                  <li>Serverless Computing</li>
+                </ul>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-database"></i></div>
+                <h3>Data Analytics</h3>
+                <p>Turn your data into actionable business insights.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                  <li>Business Intelligence</li>
+                  <li>Data Visualization</li>
+                  <li>Predictive Analytics</li>
+                  <li>Big Data Solutions</li>
+                  <li>AI & Machine Learning</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          
+          <section class="process" style="margin-top: 3rem;">
+            <h2>Our Approach</h2>
+            <p>We follow a structured methodology to ensure project success.</p>
+            <div class="service-grid">
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-search"></i></div>
+                <h3>Discovery</h3>
+                <p>We start by deeply understanding your business, audience, and goals through workshops and research.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-pencil-ruler"></i></div>
+                <h3>Strategy</h3>
+                <p>We develop a customized strategy with clear objectives, KPIs, and a roadmap for success.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tasks"></i></div>
+                <h3>Execution</h3>
+                <p>Our agile team brings the strategy to life with iterative development and continuous feedback.</p>
+              </div>
+              <div class="service-card">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Optimization</h3>
+                <p>We measure results, gather insights, and refine the solution for maximum impact.</p>
+              </div>
+            </div>
+          </section>
+          
+          <section class="testimonials" style="margin-top: 3rem;">
+            <h2>Client Success Stories</h2>
+            <div class="testimonial-grid">
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  TechNova's web development team delivered an e-commerce platform that increased our online sales by 240% in the first quarter.
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/45.jpg');"></div>
+                  <div class="author-info">
+                    <h4>Robert Taylor</h4>
+                    <p>E-commerce Director, StyleHub</p>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  The mobile app developed by TechNova has over 500,000 downloads and a 4.8-star rating in the App Store. Their expertise was invaluable.
+                </div>
+                <div class="testimonial-author">
+                  <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/33.jpg');"></div>
+                  <div class="author-info">
+                    <h4>Lisa Wong</h4>
+                    <p>Product Manager, FitTrack</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="cta">
+            <div class="cta-content">
+              <h2>Ready to discuss your project?</h2>
+              <p>Let's talk about how we can help you achieve your business goals through technology.</p>
+              <button class="btn" onclick="navigate('contact')"><i class="fas fa-paper-plane"></i> Get in Touch</button>
+            </div>
+          </section>
+        `;
+      }
+      else if (page === 'portfolio') {
+        app.innerHTML = `
+          <div class="hero">
+            <div class="hero-content">
+              <h1>Our Portfolio</h1>
+              <p>Explore our recent work and see how we've helped businesses like yours succeed.</p>
+            </div>
+          </div>
+          
+          <section>
+            <h2>Featured Projects</h2>
+            <p>Here are some of our most impactful projects across various industries.</p>
+            
+            <div class="blog-posts">
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?ecommerce');">
+                  <div class="blog-category">E-commerce</div>
+                </div>
+                <div class="blog-content">
+                  <h3>StyleHub Online Store</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> March 2023</span>
+                    <span><i class="fas fa-tag"></i> Web Development</span>
+                  </div>
+                  <p>A custom e-commerce platform with advanced product filtering, personalized recommendations, and seamless checkout.</p>
+                  <a href="#" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?fitness');">
+                  <div class="blog-category">Health & Fitness</div>
+                </div>
+                <div class="blog-content">
+                  <h3>FitTrack Mobile App</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> January 2023</span>
+                    <span><i class="fas fa-tag"></i> Mobile Development</span>
+                  </div>
+                  <p>A fitness tracking app with AI-powered workout recommendations and social features.</p>
+                  <a href="#" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?finance');">
+                  <div class="blog-category">FinTech</div>
+                </div>
+                <div class="blog-content">
+                  <h3>WealthEdge Dashboard</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> November 2022</span>
+                    <span><i class="fas fa-tag"></i> Web Application</span>
+                  </div>
+                  <p>A comprehensive financial dashboard with real-time data visualization and investment tracking.</p>
+                  <a href="#" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?education');">
+                  <div class="blog-category">Education</div>
+                </div>
+                <div class="blog-content">
+                  <h3>LearnHub LMS Platform</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> September 2022</span>
+                    <span><i class="fas fa-tag"></i> Web Development</span>
+                  </div>
+                  <p>A learning management system with course creation tools, progress tracking, and certification.</p>
+                  <a href="#" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?restaurant');">
+                  <div class="blog-category">Food & Beverage</div>
+                </div>
+                <div class="blog-content">
+                  <h3>UrbanEats Ordering System</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> July 2022</span>
+                    <span><i class="fas fa-tag"></i> Mobile App</span>
+                  </div>
+                  <p>A restaurant ordering app with table reservation, menu customization, and loyalty program.</p>
+                  <a href="#" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?travel');">
+                  <div class="blog-category">Travel</div>
+                </div>
+                <div class="blog-content">
+                  <h3>Voyager Booking Platform</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> May 2022</span>
+                    <span><i class="fas fa-tag"></i> Web Application</span>
+                  </div>
+                  <p>A comprehensive travel booking system with hotel, flight, and activity packages.</p>
+                  <a href="#" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="testimonials" style="margin-top: 3rem;">
+            <h2>Client Results</h2>
+            <div class="stat-grid">
+              <div class="stat-item">
+                <div class="stat-number">240%</div>
+                <div class="stat-label">Increase in online sales for e-commerce client</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">500K+</div>
+                <div class="stat-label">App downloads for fitness application</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">90%</div>
+                <div class="stat-label">Reduction in support tickets for SaaS platform</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">4.8★</div>
+                <div class="stat-label">Average app store rating for our mobile projects</div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="cta">
+            <div class="cta-content">
+              <h2>Have a project in mind?</h2>
+              <p>Let's discuss how we can bring your ideas to life with our expertise and innovative approach.</p>
+              <button class="btn" onclick="navigate('contact')"><i class="fas fa-paper-plane"></i> Start a Project</button>
+            </div>
+          </section>
+        `;
+      }
+      else if (page === 'blog') {
+        app.innerHTML = `
+          <div class="hero">
+            <div class="hero-content">
+              <h1>TechNova Blog</h1>
+              <p>Insights, trends, and best practices from our team of experts.</p>
+            </div>
+          </div>
+          
+          <section>
+            <h2>Latest Articles</h2>
+            <p>Stay updated with the latest in technology, design, and business strategy.</p>
+            
+            <div class="blog-posts">
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?webdevelopment');">
+                  <div class="blog-category">Web Development</div>
+                </div>
+                <div class="blog-content">
+                  <h3>The Future of Web Development in 2023</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
+                    <span><i class="fas fa-tag"></i> Development</span>
+                  </div>
+                  <p>Exploring the emerging trends and technologies that will shape web development this year and beyond.</p>
+                  <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?mobileapp');">
+                  <div class="blog-category">Mobile</div>
+                </div>
+                <div class="blog-content">
+                  <h3>Mobile App Performance Optimization</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
+                    <span><i class="fas fa-tag"></i> Performance</span>
+                  </div>
+                  <p>Proven strategies to improve your mobile app's speed, responsiveness, and overall user experience.</p>
+                  <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?design');">
+                  <div class="blog-category">UI/UX</div>
+                </div>
+                <div class="blog-content">
+                  <h3>Designing for Accessibility</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> April 30, 2023</span>
+                    <span><i class="fas fa-tag"></i> Design</span>
+                  </div>
+                  <p>How to create digital products that are inclusive and accessible to all users, regardless of ability.</p>
+                  <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?seo');">
+                  <div class="blog-category">Marketing</div>
+                </div>
+                <div class="blog-content">
+                  <h3>SEO Trends to Watch in 2023</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> April 15, 2023</span>
+                    <span><i class="fas fa-tag"></i> SEO</span>
+                  </div>
+                  <p>The most important SEO trends and algorithm updates that will impact your search rankings this year.</p>
+                  <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?cloud');">
+                  <div class="blog-category">Technology</div>
+                </div>
+                <div class="blog-content">
+                  <h3>Cloud Cost Optimization Strategies</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> March 22, 2023</span>
+                    <span><i class="fas fa-tag"></i> Cloud</span>
+                  </div>
+                  <p>Practical approaches to reduce your cloud computing costs without sacrificing performance.</p>
+                  <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://source.unsplash.com/random/600x400/?startup');">
+                  <div class="blog-category">Business</div>
+                </div>
+                <div class="blog-content">
+                  <h3>Digital Transformation for Small Businesses</h3>
+                  <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> February 18, 2023</span>
+                    <span><i class="fas fa-tag"></i> Strategy</span>
+                  </div>
+                  <p>A step-by-step guide to help small businesses leverage technology for growth and efficiency.</p>
+                  <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+              <button class="btn"><i class="fas fa-book-open"></i> View All Articles</button>
+            </div>
+          </section>
+          
+          <section class="cta" style="margin-top: 3rem;">
+            <div class="cta-content">
+              <h2>Subscribe to Our Newsletter</h2>
+              <p>Get the latest tech insights and company news delivered straight to your inbox.</p>
+              <div style="max-width: 500px; margin: 0 auto;">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <input type="email" placeholder="Enter your email address" style="padding: 0.8rem 1rem; width: 100%;">
+                </div>
+                <button class="btn" style="width: 100%;"><i class="fas fa-paper-plane"></i> Subscribe</button>
+              </div>
+            </div>
+          </section>
+        `;
+      } 
+      else if (page === 'contact') {
+        app.innerHTML = `
+          <div class="hero">
+            <div class="hero-content">
+              <h1>Contact Us</h1>
+              <p>Have a project in mind or want to learn more about our services? We'd love to hear from you.</p>
+            </div>
+          </div>
+          
+          <section>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem;">
+              <div>
+                <h2>Get In Touch</h2>
+                <p>Fill out the form and our team will get back to you within 24 hours.</p>
+                
+                <div class="contact-form">
+                  <form>
+                    <div class="form-group">
+                      <label for="name">Your Name</label>
+                      <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="subject">Subject</label>
+                      <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="service">Service Interested In</label>
+                      <select id="service">
+                        <option value="">Select a service</option>
+                        <option value="web">Web Development</option>
+                        <option value="mobile">Mobile Development</option>
+                        <option value="design">UI/UX Design</option>
+                        <option value="marketing">Digital Marketing</option>
+                        <option value="cloud">Cloud Solutions</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="message">Your Message</label>
+                      <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                  </form>
+                </div>
+              </div>
+              
+              <div>
+                <h2>Our Offices</h2>
+                <p>We have teams across multiple time zones to serve you better.</p>
+                
+                <div style="margin-top: 2rem;">
+                  <div style="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> San Francisco</h3>
+                    <p>456 Innovation Avenue<br>San Francisco, CA 94107</p>
+                    <p style="margin-top: 0.8rem;"><i class="fas fa-phone-alt" style="margin-right: 0.5rem;"></i> (415) 555-1234</p>
+                    <p><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> sf@technova.com</p>
+                  </div>
+                  
+                  <div style="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> New York</h3>
+                    <p>123 Tech Street<br>New York, NY 10001</p>
+                    <p style="margin-top: 0.8rem;"><i class="fas fa-phone-alt" style="margin-right: 0.5rem;"></i> (212) 555-5678</p>
+                    <p><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> ny@technova.com</p>
+                  </div>
+                  
+                  <div style="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> London</h3>
+                    <p>789 Digital Lane<br>London, UK EC1A 1BB</p>
+                    <p style="margin-top: 0.8rem;"><i class="fas fa-phone-alt" style="margin-right: 0.5rem;"></i> +44 20 7946 0958</p>
+                    <p><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> london@technova.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section style="margin-top: 3rem;">
+            <h2>Frequently Asked Questions</h2>
+            <div style="margin-top: 1.5rem;">
+              <div style="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                  <span>What industries do you specialize in?</span>
+                  <i class="fas fa-plus" style="color: var(--secondary);"></i>
+                </h3>
+                <div style="display: none;">
+                  <p>We have experience across multiple industries including e-commerce, healthcare, finance, education, and SaaS. Our team adapts to your specific industry requirements to deliver tailored solutions.</p>
+                </div>
+              </div>
+              
+              <div style="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                  <span>How do you ensure project quality?</span>
+                  <i class="fas fa-plus" style="color: var(--secondary);"></i>
+                </h3>
+                <div style="display: none;">
+                  <p>We follow rigorous quality assurance processes including code reviews, automated testing, and user acceptance testing. Our agile methodology ensures continuous feedback and improvement throughout the project lifecycle.</p>
+                </div>
+              </div>
+              
+              <div style="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                  <span>What are your pricing models?</span>
+                  <i class="fas fa-plus" style="color: var(--secondary);"></i>
+                </h3>
+                <div style="display: none;">
+                  <p>We offer flexible engagement models including fixed-price projects, time-and-materials, and dedicated teams. After understanding your requirements, we'll recommend the most cost-effective approach for your project.</p>
+                </div>
+              </div>
+              
+              <div style="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: var(--primary); margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                  <span>How do you handle project communication?</span>
+                  <i class="fas fa-plus" style="color: var(--secondary);"></i>
+                </h3>
+                <div style="display: none;">
+                  <p>We establish clear communication channels from day one, including regular status meetings, progress reports, and collaboration tools. Each project has a dedicated account manager to ensure seamless communication.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+      
+      // Add fade-in animations to all elements with the class
+      const fadeElements = document.querySelectorAll('.fade-in');
+      fadeElements.forEach(el => {
+        el.style.opacity = '0';
+        setTimeout(() => {
+          el.style.opacity = '1';
+        }, 100);
+      });
+      
+      // FAQ toggle functionality
+      const faqItems = document.querySelectorAll('[style*="background-color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);"] h3');
+      faqItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const content = item.nextElementSibling;
+          const icon = item.querySelector('i');
+          
+          if (content.style.display === 'none' || !content.style.display) {
+            content.style.display = 'block';
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+          } else {
+            content.style.display = 'none';
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+          }
+        });
+      });
+    }
+
+    // Load Home by default
+    navigate('home');
+    
+    // Simple form handler
+    document.addEventListener('submit', function(e) {
+      if (e.target.matches('form')) {
+        e.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        e.target.reset();
+      }
+    });
+  </script>
+</body>
+</html>
